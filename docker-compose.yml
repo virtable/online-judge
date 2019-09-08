@@ -20,7 +20,7 @@ services:
       - POSTGRES_PASSWORD=onlinejudge
 
   judge-server:
-    build: ../JudgeServer/
+    build: JudgeServer
     container_name: judge-server
     restart: always
     read_only: true
@@ -44,7 +44,9 @@ services:
       # - judger_debug=1
   
   oj-backend:
-    build: ../OnlineJudge/
+    build:
+      context: .
+      dockerfile: OnlineJudge/Dockerfile
     container_name: oj-backend
     restart: always
     depends_on:
